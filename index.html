@@ -64,7 +64,10 @@ button {
 .result-container {
   position: relative;
   margin-top: 30px;
-  height: 520px;
+  height: 550px;
+  width: 1000px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .center-gif {
@@ -90,10 +93,34 @@ button {
   transform: scale(1);
 }
 
-.top-left { top: 0; left: 40px; }
-.bottom-left { bottom: 0; left: 40px; }
-.top-right { top: 0; right: 40px; }
-.bottom-right { bottom: 0; right: 40px; }
+.top-left { top: 20px; left: 0; }
+.bottom-left { bottom: 20px; left: 0; }
+.top-right { top: 20px; right: 0; }
+.bottom-right { bottom: 20px; right: 0; }
+
+/* Glowing romantic border */
+.side-photo, .center-gif {
+  box-shadow: 0 0 20px rgba(255, 255, 255, 0.6);
+}
+
+/* Floating hearts */
+.heart {
+  position: fixed;
+  bottom: -10px;
+  font-size: 24px;
+  animation: floatUp 6s linear infinite;
+}
+
+@keyframes floatUp {
+  0% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(-800px);
+    opacity: 0;
+  }
+}
 
 </style>
 </head>
@@ -118,10 +145,10 @@ button {
 
     <img class="center-gif" src="https://media.giphy.com/media/l0MYt5jPR6QX5pnqM/giphy.gif">
 
-    <img class="side-photo top-left" src="us1.jpg">
-    <img class="side-photo bottom-left" src="selfie.jpg">
-    <img class="side-photo top-right" src="trip.jpg">
-    <img class="side-photo bottom-right" src="memory.jpg">
+    <img class="side-photo top-left" src="trip.jpeg">
+    <img class="side-photo bottom-left" src="selfie.jpeg">
+    <img class="side-photo top-right" src="us1.jpeg">
+    <img class="side-photo bottom-right" src="memory.jpeg">
 
   </div>
 </div>
@@ -151,7 +178,24 @@ yesBtn.addEventListener("click", () => {
       photo.classList.add("show");
     }, index * 800);
   });
+
+  createHearts();
 });
+
+function createHearts() {
+  setInterval(() => {
+    const heart = document.createElement("div");
+    heart.classList.add("heart");
+    heart.innerHTML = "💗";
+    heart.style.left = Math.random() * window.innerWidth + "px";
+    heart.style.fontSize = Math.random() * 20 + 20 + "px";
+    document.body.appendChild(heart);
+
+    setTimeout(() => {
+      heart.remove();
+    }, 6000);
+  }, 500);
+}
 
 </script>
 
