@@ -61,6 +61,40 @@ button {
   border-radius: 20px;
 }
 
+.result-container {
+  position: relative;
+  margin-top: 30px;
+  height: 520px;
+}
+
+.center-gif {
+  width: 230px;
+  height: 230px;
+  object-fit: cover;
+  border-radius: 20px;
+}
+
+.side-photo {
+  position: absolute;
+  width: 180px;
+  height: 180px;
+  object-fit: cover;
+  border-radius: 20px;
+  opacity: 0;
+  transform: scale(0.5);
+  transition: all 0.8s ease;
+}
+
+.show {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.top-left { top: 0; left: 40px; }
+.bottom-left { bottom: 0; left: 40px; }
+.top-right { top: 0; right: 40px; }
+.bottom-right { bottom: 0; right: 40px; }
+
 </style>
 </head>
 
@@ -80,12 +114,18 @@ button {
   <h1>Yaaay! 💞 I knew it 😘</h1>
   <p>You just made my heart very happy 💗</p>
 
-  <!-- NEW WRAPPER -->
-  <div class="image-container">
-    <img src="https://media.giphy.com/media/l0MYt5jPR6QX5pnqM/giphy.gif">
-    <img src="your-photo.jpg">
+  <div class="result-container">
+
+    <img class="center-gif" src="https://media.giphy.com/media/l0MYt5jPR6QX5pnqM/giphy.gif">
+
+    <img class="side-photo top-left" src="us1.jpg">
+    <img class="side-photo bottom-left" src="selfie.jpg">
+    <img class="side-photo top-right" src="trip.jpg">
+    <img class="side-photo bottom-right" src="memory.jpg">
+
   </div>
 </div>
+
 
 <script>
 const noBtn = document.getElementById("noBtn");
@@ -103,9 +143,17 @@ noBtn.addEventListener("mouseover", () => {
 yesBtn.addEventListener("click", () => {
   question.style.display = "none";
   result.style.display = "block";
+
+  const photos = document.querySelectorAll(".side-photo");
+
+  photos.forEach((photo, index) => {
+    setTimeout(() => {
+      photo.classList.add("show");
+    }, index * 800);
+  });
 });
+
 </script>
 
 </body>
 </html>
-
