@@ -122,12 +122,22 @@ button {
   }
 }
 
+#result {
+  display: none;
+  animation: fadeIn 2s ease;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
 </style>
 </head>
 
 <body>
 
-<audio autoplay loop>
+<audio id="bgMusic" loop>
   <source src="music.mp3" type="audio/mpeg">
 </audio>
 
@@ -171,6 +181,8 @@ yesBtn.addEventListener("click", () => {
   question.style.display = "none";
   result.style.display = "block";
 
+  document.getElementById("bgMusic").play();
+
   const photos = document.querySelectorAll(".side-photo");
 
   photos.forEach((photo, index) => {
@@ -181,6 +193,7 @@ yesBtn.addEventListener("click", () => {
 
   createHearts();
 });
+
 
 function createHearts() {
   setInterval(() => {
