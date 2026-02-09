@@ -142,6 +142,47 @@ button {
   100% { transform: scale(1); }
 }
 
+.message-box {
+  position: absolute;
+  top: 270px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 420px;
+  padding: 20px;
+  background: rgba(255,255,255,0.25);
+  border-radius: 20px;
+  backdrop-filter: blur(10px);
+  font-size: 18px;
+  color: #fff;
+  min-height: 80px;
+}
+
+#typing-text::after {
+  content: "|";
+  animation: blink 1s infinite;
+}
+
+@keyframes blink {
+  0% { opacity: 1; }
+  50% { opacity: 0; }
+  100% { opacity: 1; }
+}
+
+.message-box {
+  position: absolute;
+  top: 260px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(255,255,255,0.85);
+  padding: 15px 25px;
+  border-radius: 15px;
+  width: 60%;
+  font-size: 18px;
+  color: #ff4d6d;
+  box-shadow: 0 0 15px rgba(255,255,255,0.7);
+}
+
+
 </style>
 </head>
 
@@ -164,17 +205,17 @@ button {
   <div class="result-container">
 
     <img class="center-gif" src="https://media.giphy.com/media/l0MYt5jPR6QX5pnqM/giphy.gif">
+    <div class="message-box">
+     <p id="typing-text"></p>
+    </div>
 
-    <img class="side-photo top-left" src="selfie.jpeg">
-    <img class="side-photo bottom-left" src="new2025.jpeg">
+    <img class="side-photo top-left" src="trip.jpeg">
+    <img class="side-photo bottom-left" src="selfie.jpeg">
     <img class="side-photo top-right" src="us1.jpeg">
     <img class="side-photo bottom-right" src="memory.jpeg">
 
   </div>
-    <p id="finalMsg" style="display:none; margin-top:20px;      font-size:18px;">
-  Let’s keep making memories, taking silly pictures, and discovering life together, one beautiful moment at a time 💞
-    </p>
-
+    
 </div>
 
 
@@ -183,6 +224,25 @@ const noBtn = document.getElementById("noBtn");
 const yesBtn = document.getElementById("yesBtn");
 const question = document.getElementById("question");
 const result = document.getElementById("result");
+
+// Typing Text Setup
+const text = "Let’s keep making memories, taking silly pictures, and discovering life together — one beautiful moment at a time 💗";
+let index = 0;
+
+function typeEffect() {
+  document.getElementById("typing-text").innerHTML = "";
+
+  function typeLoop() {
+    if (index < text.length) {
+      document.getElementById("typing-text").innerHTML += text.charAt(index);
+      index++;
+      setTimeout(typeLoop, 60);
+    }
+  }
+
+  index = 0;
+  typeLoop();
+}
 
 noBtn.addEventListener("mouseover", () => {
   const x = Math.random() * (window.innerWidth - 100);
@@ -206,12 +266,13 @@ yesBtn.addEventListener("click", () => {
   });
 
   createHearts();
-setTimeout(() => {
-  document.getElementById("finalMsg").style.display = "block";
-}, 4000);
+
+  // Start typing AFTER photos appear
+  setTimeout(() => {
+    typeEffect();
+  }, 3500);
 
 });
-
 
 function createHearts() {
   setInterval(() => {
@@ -227,11 +288,7 @@ function createHearts() {
     }, 6000);
   }, 500);
 }
-
 </script>
 
 </body>
 </html>
-
-
-
