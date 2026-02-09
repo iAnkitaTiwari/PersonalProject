@@ -169,6 +169,7 @@ button {
 }
 
 .message-box {
+  display: none;
   width: 500px;           /* smaller width */
   margin: 160px auto 0 auto;  /* pushes it down from GIF */
   padding: 20px 25px;
@@ -222,7 +223,7 @@ const question = document.getElementById("question");
 const result = document.getElementById("result");
 
 // Typing Text Setup
-const text = "Let’s keep making memories, taking silly pictures, and discovering life together — one beautiful moment at a time 💗";
+const text = "Let’s keep making memories, taking silly pictures, and discovering life together. One beautiful moment at a time 💗";
 let index = 0;
 
 function typeEffect() {
@@ -265,8 +266,9 @@ yesBtn.addEventListener("click", () => {
 
   // Start typing AFTER photos appear
   setTimeout(() => {
-    typeEffect();
-  }, 3500);
+  document.querySelector(".message-box").style.display = "block";
+  typeEffect();
+ }, 3500);
 
 });
 
