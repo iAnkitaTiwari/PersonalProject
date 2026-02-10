@@ -7,13 +7,13 @@
 <style>
 body {
   background: linear-gradient(135deg, #ff9a9e, #fad0c4);
-  min-height: 100vh;
+  height: 100vh;
   display: flex;
   align-items: center;
   justify-content: center;
   font-family: 'Arial', sans-serif;
   text-align: center;
-  overflow-x: hidden;
+  overflow: hidden;
 }
 
 h1 {
@@ -64,14 +64,11 @@ button {
 .result-container {
   position: relative;
   margin-top: 30px;
-  width: 90%;
-  max-width: 1000px;
-  height: auto;
-  min-height: 550px;
+  height: 550px;
+  width: 1000px;
   margin-left: auto;
   margin-right: auto;
 }
-
 
 .center-gif {
   width: 230px;
@@ -217,9 +214,6 @@ button {
   position: absolute;
   top: 0;
   left: 0;
-  object-fit: cover;
-  image-rendering: auto;
-  transform: translateZ(0);
 }
 
 .flip-front {
@@ -294,9 +288,9 @@ const question = document.getElementById("question");
 const result = document.getElementById("result");
 
 // Typing Text Setup
-const text = `You Make Me Laugh Until My Stomach Hurts 💗
-Toh jab is duniya mein tum paida mere liye huye ho,
-toh pura attention mujhe hi do naa 😘`;
+const text = `You Make Me Laugh Until My Stomach Hurts 🧿💗
+Toh jab is Duniya mai tum paida mere liye huye ho,
+Toh pura attention mujhe hi do naa 😘`;
 let index = 0;
 
 function typeEffect() {
