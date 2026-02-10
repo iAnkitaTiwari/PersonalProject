@@ -180,6 +180,47 @@ button {
   box-shadow: 0 0 25px rgba(255,255,255,0.6);
 }
 
+.flip-back {
+  object-fit: cover;
+  transform: rotateY(180deg);
+}
+
+/* ===== Flip Card Styles (REQUIRED) ===== */
+.flip-card {
+  position: absolute;
+  width: 180px;
+  height: 180px;
+  perspective: 1000px;
+  cursor: pointer;
+}
+
+.flip-inner {
+  width: 100%;
+  height: 100%;
+  transition: transform 0.8s;
+  transform-style: preserve-3d;
+  position: relative;
+}
+
+.flip-card.flipped .flip-inner {
+  transform: rotateY(180deg);
+}
+
+.flip-front, .flip-back {
+  width: 100%;
+  height: 100%;
+  border-radius: 20px;
+  backface-visibility: hidden;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.flip-front {
+  object-fit: cover;
+}
+
+
 </style>
 </head>
 
@@ -206,10 +247,34 @@ button {
      <p id="typing-text"></p>
     </div>
 
-    <img class="side-photo top-left" src="selfie.jpeg">
-    <img class="side-photo bottom-left" src="new2025.jpeg">
-    <img class="side-photo top-right" src="us1.jpeg">
-    <img class="side-photo bottom-right" src="memory.jpeg">
+    <div class="flip-card side-photo top-left">
+  <div class="flip-inner">
+    <img src="selfie.jpeg" class="flip-front">
+    <img src="travel.jpeg" class="flip-back">
+  </div>
+</div>
+
+<div class="flip-card side-photo top-right">
+  <div class="flip-inner">
+    <img src="us1.jpeg" class="flip-front">
+    <img src="dance.jpeg" class="flip-back">
+  </div>
+</div>
+
+<div class="flip-card side-photo bottom-left">
+  <div class="flip-inner">
+    <img src="new2025.jpeg" class="flip-front">
+    <img src="datenight.jpeg" class="flip-back">
+  </div>
+</div>
+
+<div class="flip-card side-photo bottom-right">
+  <div class="flip-inner">
+    <img src="memory.jpeg" class="flip-front">
+    <img src="temple.jpeg" class="flip-back">
+  </div>
+</div>
+
 
   </div>
     
@@ -223,7 +288,8 @@ const question = document.getElementById("question");
 const result = document.getElementById("result");
 
 // Typing Text Setup
-const text = "Let’s keep making memories, taking silly pictures, and savoring life. One beautiful moment at a time. 💗";
+const text = " You Make Me Laugh Untill My Stomsch Hurts 💗
+Toh Jab is Duniya mai tum paida mere liye huuye hoo toh Pura Attention Mujhe hi doo naa";
 let index = 0;
 
 function typeEffect() {
@@ -286,9 +352,16 @@ function createHearts() {
     }, 6000);
   }, 500);
 }
+
+// Flip photo on click
+document.querySelectorAll(".flip-card").forEach(card => {
+  card.addEventListener("click", () => {
+    card.classList.toggle("flipped");
+  });
+});
+
+
 </script>
 
 </body>
 </html>
-
-
